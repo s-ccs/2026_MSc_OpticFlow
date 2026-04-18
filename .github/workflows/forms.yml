@@ -1,0 +1,55 @@
+on:
+    workflow_dispatch:
+    push:
+     paths:
+       - project*.toml
+       - .github/workflows/forms.yml
+
+jobs:
+    build-deploy:
+        runs-on: ubuntu-24.04
+        strategy:
+            matrix:
+                language: 
+                    - de
+                    - en
+        steps:
+              - name: checkout repo
+                uses: actions/checkout@v4
+              
+              - name: Read project TOML file
+                shell: bash
+                id: read_toml
+                run: |
+                  toml_content=$(cat project_*.toml  | base64 -w0)
+                  echo "toml_content=$toml_content" >> $GITHUB_OUTPUT
+              
+              - name: Generate Forms
+                uses: s-ccs/consentform_gh_action@main
+                with:
+                 language: ${{ matrix.language }}
+                 project_toml: ${{ steps.read_toml.outputs.toml_content }}
+              
+              - name: Save PDFs into repo folders
+                shell: bash
+                run: |
+                  mkdir -p forms/consent_forms
+                  mkdir -p forms/data_privacy_forms
+
+                  mv ${{ github.action_path }}/consent.pdf forms/consent_forms/consent_${{ matrix.language }}.pdf
+                  mv ${{ github.action_path }}/data_privacy.pdf forms/data_privacy_forms/data_privacy_${{ matrix.language }}.pdf
+
+              - name: Commit generated forms
+                shell: bash
+                run: |
+                  git config --local user.email "action@github.com"
+                  git config --local user.name "GitHub Action"
+
+                  git add forms/
+
+                  if ! git diff --cached --quiet; then
+                    git commit -m "Auto-generate consent and data privacy forms (${{ matrix.language }})"
+                    git pull --rebase origin ${{ github.ref_name }}
+                    git push origin HEAD:${{ github.ref_name }}
+                  fi
+   
