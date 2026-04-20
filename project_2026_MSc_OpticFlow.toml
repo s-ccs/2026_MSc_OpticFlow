@@ -33,17 +33,13 @@
     use_eyetracking = true
 	  use_vr = true
 
-	  study_purpose_de = """In dieser Studie untersuchen wir, wie das Gehirn visuelle Bewegung verarbeitet. 
-    Dazu messen wir Ihre Gehirnaktivität (EEG) und verfolgen Ihre Blickrichtung."""
+	  study_purpose_de = """In dieser Studie untersuchen wir, wie das Gehirn visuelle Bewegung verarbeitet. Dazu messen wir Ihre Gehirnaktivität (EEG) und verfolgen Ihre Blickrichtung."""
 
-    study_purpose_en = """In this study, we investigate how the brain processes visual motion. 
-    We measure your brain activity (EEG) and track your gaze while you watch moving patterns."""
+    study_purpose_en = """In this study, we investigate how the brain processes visual motion. We measure your brain activity (EEG) and track your gaze while you watch moving patterns."""
 
-    study_task_de = """Sie sehen bewegte Punktmuster, während Sie einen Punkt in der Mitte des Bildschirms fixieren. 
-    Nach jeder kurzen Präsentation geben Sie an, ob die Bewegung langsamer, gleich schnell oder schneller als die durchschnittliche Geschwindigkeit war."""
+    study_task_de = """Sie sehen bewegte Punktmuster, während Sie einen Punkt in der Mitte des Bildschirms fixieren. Nach jeder kurzen Präsentation geben Sie an, ob die Bewegung langsamer, gleich schnell oder schneller als die durchschnittliche Geschwindigkeit war."""
 
-    study_task_en = """You will watch moving dot patterns while keeping your eyes fixed on a central point. 
-    After each short presentation, you will indicate whether the motion was slower, the same, or faster than the average speed."""
+    study_task_en = """You will watch moving dot patterns while keeping your eyes fixed on a central point. After each short presentation, you will indicate whether the motion was slower, the same, or faster than the average speed."""
 
 	researcher_details_de = """Verantwortliche Person: Benedikt Ehinger  
 								Computational Cognitive Science (CCS)  
